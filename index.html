@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>とやまカムバックコンサート</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+.concert-block{
+    background:rgba(147,204,235,0.12);
+    box-shadow:0 40px 80px rgba(147,204,235,0.15);
+    padding:60px 40px;
+    border-radius:20px;
+    margin-top:40px;
+}
+  body{
+    margin:0;
+    font-family:'Shippori Mincho', serif;
+    color:#93CCEB;
+    background:#ffffff;
+}
+
+.hero h1{
+    white-space:nowrap;
+    font-size:clamp(22px, 6vw, 36px);
+}
+
+/* ===== SNSリンクボックス（完成版） ===== */
+.sns-box{
+    margin-top:50px;
+    background:#ffffff;
+    padding:30px 20px;
+    text-align:center;
+}
+
+/* タイトル */
+.sns-box h3{
+    color:#F4A7B9;
+    font-weight:600;
+    letter-spacing:1px;
+    margin-bottom:25px;
+    white-space:nowrap; /* 折り返し防止 */
+    font-size:clamp(18px, 5vw, 22px); /* スマホ自動調整 */
+}
+
+/* ボタン並び */
+.sns-links{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:18px;
+}
+
+/* ボタンデザイン */
+.sns-links a{
+    text-decoration:none;
+    color:#F4A7B9;
+    border:1px solid #F4A7B9;
+    padding:10px 22px;
+    border-radius:25px;
+    font-weight:600;
+    transition:0.3s ease;
+    background:#ffffff;
+    white-space:nowrap; /* ボタン内改行防止 */
+}
+
+/* ホバー */
+.sns-links a:hover{
+    background:#FDE6EC;
+}
+/* ===== テキスト装飾 ===== */
+.blue-line{
+    text-align:center;
+    font-size:18px;
+    margin-bottom:20px;
+    letter-spacing:2px;
+}
+
+/* ===== 横スクロール ===== */
+.scroll-gallery{
+    display:flex;
+    overflow-x:auto;
+    gap:30px;
+    padding:30px 10px;
+    scroll-snap-type:x mandatory;
+}
+.scroll-gallery img{
+    height:420px;
+    border-radius:6px;
+    box-shadow:0 20px 40px rgba(147,204,235,0.25);
+    scroll-snap-align:center;
+    transition:transform 0.4s ease;
+}
+.scroll-gallery img:hover{
+    transform:scale(1.03);
+}
+
+/* ===== 詳細 ===== */
+.concert-detail{
+    color:#22669F;
+    font-size:18px;
+    line-height:2;
+    margin-top:20px;
+}
+
+/* ===== 出演者 ===== */
+.performers{
+    color:#22669F;
+    font-size:17px;
+    line-height:2;
+    margin-top:40px;
+}
+
+/* ===== ヒーロー（水彩＋立山ライン） ===== */
+.hero{
+    position:relative;
+    padding:120px 20px;
+    text-align:center;
+    overflow:hidden;
+    background:
+        linear-gradient(to bottom,#eaf8ff 0%,#ffffff 70%),
+        radial-gradient(circle at 20% 30%, rgba(147,204,235,0.5), transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(147,204,235,0.3), transparent 60%);
+}
+
+/* 山のシルエット */
+.hero::after{
+    content:"";
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:200px;
+    background:linear-gradient(to top,rgba(147,204,235,0.4),transparent);
+    clip-path:polygon(
+        0 70%,
+        15% 60%,
+        30% 75%,
+        45% 55%,
+        60% 72%,
+        75% 58%,
+        90% 70%,
+        100% 60%,
+        100% 100%,
+        0 100%
+    );
+}
+
+/* ===== ナビ（スマホ完全対応版） ===== */
+nav{
+    display:flex;
+    gap:15px;
+    padding:20px 15px;
+    overflow-x:auto;          /* ← 横スクロール許可 */
+    -webkit-overflow-scrolling:touch;
+}
+
+nav::-webkit-scrollbar{
+    display:none;             /* スクロールバー非表示 */
+}
+
+nav a{
+    flex:0 0 auto;            /* ← 縮ませない */
+    text-decoration:none;
+    color:#93CCEB;
+    font-weight:600;
+    padding:10px 18px;
+    border:1px solid rgba(147,204,235,0.4);
+    border-radius:25px;
+    white-space:nowrap;       /* 文字改行防止 */
+    font-size:14px;
+    transition:0.3s ease;
+}
+
+nav a:hover{
+    background:rgba(147,204,235,0.15);
+}
+
+/* ===== セクション ===== */
+section{
+    padding:90px 20px;
+    max-width:1000px;
+    margin:auto;
+}
+h2{
+    text-align:center;
+    margin-bottom:50px;
+    position:relative;
+}
+h2::after{
+    content:"";
+    width:70px;
+    height:4px;
+    background:#FDEA6C;
+    display:block;
+    margin:15px auto 0;
+}
+h3{
+    font-size:22px;
+    margin-top:50px;
+}
+
+/* ===== フォーム ===== */
+input,textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border:1px solid #93CCEB;
+    font-family:'Shippori Mincho', serif;
+}
+button{
+    background:#FDEA6C;
+    border:none;
+    padding:12px 25px;
+    font-family:'Shippori Mincho', serif;
+    cursor:pointer;
+}
+
+/* ===== フッター ===== */
+footer{
+    text-align:center;
+    padding:50px 20px;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+    .hero h1{font-size:28px;}
+    .scroll-gallery img{height:300px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+    <h1>とやまカムバックコンサート</h1>
+    <p>富山県出身音大系大学生によるコンサート</p>
+</div>
+
+<nav>
+    <a href="#concert">次回演奏会</a>
+    <a href="#archive">動画</a>
+    <a href="#contact">お問い合わせ</a>
+</nav>
+
+<section id="concert">
+<h2>次回演奏会</h2>
+
+<div class="concert-block">
+<h3>〜とやまカムバックコンサートが贈る〜卒業記念演奏会</h3>
+
+<div class="scroll-gallery">
+    <img src="images/カムコン卒業記念演奏会 - 1.jpeg" alt="卒業記念演奏会チラシ1">
+    <img src="images/カムコン卒業記念演奏会 - 5.jpeg" alt="卒業記念演奏会チラシ2">
+</div>
+
+<p class="concert-detail">
+<strong>2026.3.7.SAT</strong><br>
+13:30開演 (13:00開場)<br>
+北日本新聞ホール<br>
+全席自由・入場料無料<br>
+主催：とやまカムバックコンサート事務局
+</p>
+
+<h3>出演者</h3>
+
+<div class="performers">
+<strong>佐伯昌恭(バリトン)</strong><br>
+富山県立呉羽高等学校、愛知県立芸術大学を経て、同大学大学院博士前期課程2年次在学中。学内選抜により、第55回愛知県立芸術大学卒業演奏会に出演。第29回 日本クラシック音楽コンクール 声楽部門高校男子の部 第3位。第2回国際声楽コンクール東京 入選。第78回全日本学生音楽コンクール 名古屋大会第2位。全国大会 入選。令和7年度 (公財)北野生涯教育振興会奨学生。これまでに声楽を黒崎隆憲、森寿美に師事。
+</div>
+
+<div class="performers">
+<strong>小谷桃佳(ソプラノ)</strong><br>
+富山県立呉羽高等学校普通科音楽コース、東京学芸大学教育学部中等教育教員養成課程音楽専攻卒業。現在、東京音楽大学大学院修士課程声楽専攻2年次在学中。学芸×第九特別演奏会、Mahler project マーラー/交響曲第4番でソリストを務める。これまで声楽を横内桂子、小林大作、森朱美、釜洞祐子、武田正雄、九嶋香奈枝の各氏に師事。とやまカムバックコンサート代表。
+</div>
+
+<div class="performers">
+<strong>金場葉菜(サクソフォン)</strong><br>
+富山県高岡市出身。第38回富山県青少年音楽コンクール最優秀賞・青少年音楽大賞受賞。第4回Kグランプリコンクール優秀賞。第23回北陸新人登竜門コンサートにてオーケストラアンサンブル金沢とGlazunovの協奏曲を共演。これまでにサクソフォンを谷道実子、松井宏幸、田中靖人、有村純親、住谷美帆、小山弦太郎の各氏に師事。現在、昭和音楽大学弦・管・打楽器演奏家コース4年次に特待生として在学中。
+</div>
+
+<div class="performers">
+<strong>関口実咲(ソプラノ)</strong><br>
+魚津市出身。2002年生まれ。2021年3月に富山県立魚津高等学校卒業後声楽を始め、今まで串田淑子・福島明也・五月女智恵の各氏に師事。現在愛知県立芸術大学音楽学部声楽専攻4年次在学中。
+</div>
+
+</div>
+</section>
+
+<section id="archive">
+<h2>過去の動画アーカイブ</h2>
+<iframe width="100%" height="450" src="https://www.youtube.com/embed/SNiQf7IWmoE" frameborder="0" allowfullscreen></iframe>
+</section>
+
+<section id="contact">
+<h2>お問い合わせ</h2>
+
+<form action="mailto:toyamacomecon@gmail.com" method="post" enctype="text/plain">
+<label>氏名</label>
+<input type="text" name="氏名" required>
+
+<label>メールアドレス</label>
+<input type="email" name="メールアドレス" required>
+
+<label>件名</label>
+<input type="text" name="件名" required>
+
+<label>内容</label>
+<textarea name="内容" rows="5" required></textarea>
+
+<button type="submit">送信する</button>
+</form>
+<div class="sns-box">
+    <h3>SNS・掲載情報</h3>
+    <div class="sns-links">
+        <a href="https://www.instagram.com/toyama_comecon?igsh=dXdiNTZma2d1amY=" target="_blank">
+            Instagram
+        </a>
+
+        <a href="https://x.com/toyama_comecon?s=21" target="_blank">
+            X（旧Twitter）
+        </a>
+
+        <a href="https://www.concertsquare.jp/musician/a49ab0a2b2594edea20e977b581f753e" target="_blank">
+            コンサートスクウェア
+        </a>
+    </div>
+</div>
+</section>
+
+<footer>
+© 2026 とやまカムバックコンサート
+</footer>
+
+</body>
+</html>
