@@ -77,24 +77,28 @@
     margin-bottom:20px;
     letter-spacing:2px;
 }
-    /* ===== 横スクロール ===== */
+/* ===== 横スクロール ===== */
 .scroll-gallery{
     display:flex;
     overflow-x:auto;
-    gap:20px;
-    padding:30px 0;
+    gap:30px;
+    padding:30px 10px;
     scroll-snap-type:x mandatory;
 }
 
 .scroll-gallery img{
-    flex:0 0 100%;
-    width:100%;
-    height:auto;
+    height:auto;          /* ← 高さ固定を解除 */
+    max-height:420px;     /* ← 最大高さだけ制限 */
+    width:auto;           /* ← 自動調整 */
     border-radius:6px;
-    scroll-snap-align:center;
     box-shadow:0 20px 40px rgba(147,204,235,0.25);
+    scroll-snap-align:center;
+    transition:transform 0.4s ease;
 }
 
+.scroll-gallery img:hover{
+    transform:scale(1.03);
+}
 /* ===== 詳細 ===== */
 .concert-detail{
     color:#22669F;
@@ -251,7 +255,7 @@ footer{
 
 <div class="scroll-gallery">
     <img src="concert20260307-1.jpeg" alt="卒業記念演奏会チラシ1">
-    <img src="concert20240307-2.jpeg" alt="卒業記念演奏会チラシ2">
+    <img src="concert20260307-2.jpeg" alt="卒業記念演奏会チラシ2">
 </div>
 
 <p class="concert-detail">
